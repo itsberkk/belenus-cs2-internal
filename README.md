@@ -8,7 +8,15 @@
 
 <br><br>
 
-<kbd><img src="img/1.png" width="100%" alt="Weapon and hand chams in first person"></kbd>
+<a href="#about">About</a> &nbsp;·&nbsp;
+<a href="#in-the-game">In the game</a> &nbsp;·&nbsp;
+<a href="#custom-models">Custom models</a> &nbsp;·&nbsp;
+<a href="#features">Features</a> &nbsp;·&nbsp;
+<a href="#engineering">Engineering</a>
+
+<br><br>
+
+<img src="img/interface.svg" width="100%" alt="The Belenus menu: the chams page with a solid and a metal material on the agent, the weapon page in first person, and the visuals page with the ESP drawn on the agent">
 
 <br><br>
 
@@ -19,37 +27,22 @@
 <h2>About</h2>
 
 <p>
-<b>Belenus</b> is a semi-rage Counter-Strike 2 internal written from scratch in C++20. It is one DLL that hooks the renderer and the scene system, draws its own interface over the game, and changes what the engine renders instead of painting on top of it. The name is the Celtic god of light.
+<b>Belenus</b> is a semi-rage Counter-Strike 2 internal written from scratch in C++20: one DLL that hooks the renderer and the scene system, draws its own interface over the game, and changes what the engine renders instead of painting on top of it. The menu above is not a mock-up. The agent stands in a real map with baked lighting, the arms hold the rifle with the game's own animations, and a material is shown the way the engine will draw it. The name is the Celtic god of light.
 </p>
 
-<p>
-The menu is not a list of checkboxes. The agent stands in a real map with baked lighting, the first-person arms hold the rifle with the game's own animations, and a material you pick is drawn the way the engine will draw it.
-</p>
-
-<table>
-<tr>
-<td width="33%" valign="top">
-<b>Drawn by the engine</b><br><br>
-Chams are real Source 2 materials, built at run time and swapped into the scene per mesh. Nothing is painted over the finished frame.
-</td>
-<td width="33%" valign="top">
-<b>Seen before the match</b><br><br>
-The menu carries its own renderer. Players, weapon and hands are previewed with the same numbers the game material is built from.
-</td>
-<td width="33%" valign="top">
-<b>One source of truth</b><br><br>
-Every setting lives in one generated table. Profiles, binds, search and migration between versions all read it.
-</td>
-</tr>
-</table>
+<img src="img/principles.svg" width="100%" alt="Drawn by the engine: chams are real Source 2 materials, built at run time and swapped into the scene per mesh. Seen before the match: the menu carries its own renderer, what you set there is what the game draws. One source of truth: every setting lives in one generated table that profiles, binds and search all read.">
 
 <h2>In the game</h2>
+
+<kbd><img src="img/1.png" width="100%" alt="Weapon and hand chams in first person"></kbd>
+
+<br><br>
 
 <img align="right" width="52%" src="img/3.png" alt="Player chams and ESP">
 
 <h3>Player chams and ESP</h3>
 
-<p>Real Source 2 materials, swapped in per mesh and per owner.</p>
+<p>The agent's own material, rebuilt at run time in your colour.</p>
 
 <ul>
 <li><b>Five looks</b>: ghost, glow, solid, galaxy, metal</li>
@@ -91,45 +84,20 @@ Every setting lives in one generated table. Profiles, binds, search and migratio
 
 <br><br>
 
-<table>
-<tr>
-<td width="50%" valign="top">
-<b>A renderer inside the menu</b><br><br>
-A dedicated D3D11 pipeline with 4x MSAA: maps exported from the game with their baked lightmaps (400k+ triangles), GPU skinning up to 160 bones, two 2048² shadow maps with PCF, depth of field, and a bloom pass for emissive materials.
-</td>
-<td width="50%" valign="top">
-<b>Engine-level materials</b><br><br>
-Materials are written as KV3 text, compiled by the engine's own material system and swapped in through the scene system, per mesh and per owner. Emission follows the engine's units, so what a slider says is what the surface emits.
-</td>
-</tr>
-<tr>
-<td valign="top">
-<b>Afterglow UI kit</b><br><br>
-A component library on raw draw lists: its own layout engine, animation system, type scale and DPI handling. A page is a short list of rows, and nothing in it is a stock widget.
-</td>
-<td valign="top">
-<b>Asset pipeline</b><br><br>
-Python tooling extracts models, textures, skeletons and animation clips from the game's packages and bakes them into compact binary formats, streamed in on a worker thread.
-</td>
-</tr>
-<tr>
-<td valign="top">
-<b>UI harness</b><br><br>
-The interface compiles and runs on its own, outside the game. One command renders any page at any resolution to a PNG, which is how the design is iterated and regression-checked.
-</td>
-<td valign="top">
-<b>Generated configuration</b><br><br>
-Every setting is collected from the headers into one table at build time. Profiles, binds and migration between versions come from that single source.
-</td>
-</tr>
-</table>
+<ul>
+<li><b>A renderer inside the menu.</b> A dedicated D3D11 pipeline with 4x MSAA: maps exported from the game with their baked lightmaps, GPU skinning up to 160 bones, shadow maps with PCF, depth of field and a bloom pass.</li>
+<li><b>Engine-level materials.</b> Written as KV3 text, compiled by the engine's own material system and swapped in through the scene system, per mesh and per owner, keeping the model's normal and occlusion maps.</li>
+<li><b>Afterglow UI kit.</b> A component library on raw draw lists with its own layout engine, animation system, type scale and DPI handling. Nothing in it is a stock widget.</li>
+<li><b>Asset pipeline.</b> Python tooling extracts models, textures, skeletons and animation clips from the game's packages and bakes them into compact binary formats.</li>
+<li><b>UI harness.</b> The interface compiles and runs on its own, outside the game. One command renders any page at any resolution to a PNG; every menu image on this page was made that way.</li>
+<li><b>Generated configuration.</b> Every setting is collected from the headers into one table at build time. Profiles, binds and migration between versions come from that single source.</li>
+</ul>
 
 <h2>Latest work</h2>
 
 <ul>
-<li><b>Chams</b> rebuilt on engine materials: players, weapon and hands are three materials that share nothing</li>
+<li><b>Chams</b> rebuilt on the agent's own material: players, weapon and hands are three materials that share nothing</li>
 <li><b>Through walls</b> draws what cover hides flat, in its own colour and opacity</li>
-<li><b>Emission</b> is written in the engine's own units, so glow is predictable and capped</li>
 <li><b>Menu scene</b> fills the whole window; weapon and hands are shown in first person</li>
 <li><b>Hit marks</b> land on the point that was hit, and <b>tracers</b> start at the muzzle</li>
 </ul>
