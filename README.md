@@ -104,4 +104,4 @@
 
 <br>
 
-<p align="center"><sub>Source is private. This repository is a showcase.</sub></p>
+<p align="center"><sub>Source is private. This repository is a showcase..</sub></p>
