@@ -27,9 +27,9 @@
 
 ## About
 
-**Belenus** is a semi-rage CS2 internal written from scratch in C++20.
+**Belenus** — semi-rage CS2 internal, written in C++20.
 
-The menu above is not a mockup — the agent, lighting and materials are all running live.
+Everything you see in the menu is live. Not a mockup.
 
 ---
 
@@ -43,10 +43,10 @@ The menu above is not a mockup — the agent, lighting and materials are all run
 
 ### Player chams & ESP
 
-- Five styles: ghost, glow, solid, galaxy, metal
-- Through-wall support
-- Boxes, names, health, skeleton
-- Hit markers and tracers
+- ghost, glow, solid, galaxy, metal
+- through walls
+- box, name, health, skeleton
+- hitmarkers + tracers
 
 <br clear="both">
 
@@ -54,8 +54,8 @@ The menu above is not a mockup — the agent, lighting and materials are all run
 
 ### Hands & weapon
 
-Players, weapon and hands all have separate materials.  
-You can preview everything in first person inside the menu.
+Players, weapon and hands all use separate materials.  
+You can preview them in first person from the menu.
 
 <br clear="both">
 
@@ -63,7 +63,7 @@ You can preview everything in first person inside the menu.
 
 ## Custom models
 
-27 player models fitted to the game’s skeleton and driven by its own animations.
+27 models that use the game's own animations.
 
 <img src="img/models.svg" width="100%" alt="Custom models">
 
@@ -75,15 +75,15 @@ You can preview everything in first person inside the menu.
 
 ---
 
-## Latest work
+## Latest
 
-- Independent chams for players, hands and weapons
-- Through-wall rendering
-- Full menu scene with first-person view
-- Hit markers and tracers
+- chams rewritten (players / hands / weapon are separate)
+- through wall
+- full menu scene with first person view
+- hitmarkers + tracers
 
 <br>
 
 <p align="center">
-<sub>Source is private. This repository is a showcase.</sub>
+<sub>Source is private. This repo is just a showcase.</sub>
 </p>
