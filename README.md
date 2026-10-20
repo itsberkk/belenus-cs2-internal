@@ -63,7 +63,7 @@ You can preview them in first person from the menu.
 
 ## Custom models
 
-27 models that use the game's own animations.
+68 models that use the game's own animations.
 
 <img src="img/models.svg" width="100%" alt="Custom models">
 
